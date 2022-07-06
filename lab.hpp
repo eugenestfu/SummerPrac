@@ -256,7 +256,7 @@ void Create() {
 
 void Read() {
     system("cls");
-    rbinf(binfile);
+    CheckEdit(binfile);
 }
 
 void Sorted() {
