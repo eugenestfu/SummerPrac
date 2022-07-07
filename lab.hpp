@@ -67,7 +67,7 @@ void createFile(char* file) {
     fout.open(file);
 m: cout << "Введите все поля данные для одной структуры:\n";  
     cin >> ct;
-    fout << ct << "\n";
+    fout << ct;
     cout << "Для завершения нажмите '0'\nЕсли хотите продолжить, то введите любой другой симвойл:\n";
     char c;
     c = _getch();
@@ -75,7 +75,10 @@ m: cout << "Введите все поля данные для одной стр
         fout.close();
         return;
     }
-    else goto m;
+    else {
+        fout << endl;
+        goto m;
+    }
 }
 
 void createBin(char* data, char* binfile){
@@ -249,7 +252,7 @@ void CheckEdit(char* binfile) {
 
 void Create() {
     system("cls");
-    createFile(filename);
+    //createFile(filename);
     createBin(filename, binfile);
 }
 
