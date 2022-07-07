@@ -1,4 +1,4 @@
-﻿#ifndef lab_hpp
+#ifndef lab_hpp
 #define lab_hpp
 
 #include <iostream>
@@ -32,8 +32,8 @@ void sorted(Cities* cities, int n);
 
 void filtr(char* str) {
     int x;
-    int xl = 0, // номер первого символа строки
-        xr = strlen(str) - 1; //номер последнего символа строка
+    int xl = 0,
+        xr = strlen(str) - 1; 
     while (str[xl] == ' ') xl++;
     while (str[xr] == ' ') xr--;
     for (x = xl; x <= xr; x++)
@@ -132,7 +132,6 @@ void RemoveLine(char* filedel, char* binfile) {
                     binf.write((char*)&ct, z); //запись в файл откорректированной структуры
                     binf.seekp(+z, ios::cur);
                 };
-
                 int handle = _open(binfile, ios::in | ios::binary);
                 size_f -= z;
                 _chsize(handle, size_f);
@@ -250,7 +249,7 @@ void CheckEdit(char* binfile) {
 
 void Create() {
     system("cls");
-    //createFile(Text);
+    createFile(filename);
     createBin(filename, binfile);
 }
 
