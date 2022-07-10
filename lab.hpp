@@ -100,6 +100,7 @@ void createBin(char* data, char* binfile){
 
 void RemoveLine(char* filedel, char* binfile) {
     int z = sizeof(Cities);
+    int ch = 0;
     cout << "Удаление из бинарного файла" << endl;
     fin.open(filedel);
     if (!fin) {
@@ -120,7 +121,7 @@ void RemoveLine(char* filedel, char* binfile) {
     vector<string> cache;
     while (!fin.eof()) {
         getline(fin, data);
-        if (data.empty())  continue;
+        if (data.empty())  cout << "\nБыла найдена пустая строка\n";
         else cache.push_back(data);
     }
     for (auto it = cache.begin(); it != cache.end(); it++) {
@@ -129,6 +130,7 @@ void RemoveLine(char* filedel, char* binfile) {
         while (binf.peek() != EOF) {
             binf.read((char*)&ct, z);
             if (ct.area == stoi(*it)) { 
+                ch++;
                 while (binf.peek() != EOF) {
                     binf.read((char*)&ct, z);
                     binf.seekp(-2 * z, ios::cur); //смещаем указатель файла на одну структуру назад
@@ -141,7 +143,15 @@ void RemoveLine(char* filedel, char* binfile) {
                 _close(handle);
             }
         }
+        if (ch == 0) {
+            cout << "\nне была удалена структура с параметром: " << *it << "\n";
+        }
+        else {
+            ch = 0;
+            cout << "\nбыла удалена структура с параметром: " << *it << "\n";
+        }
     }
+    cout << "\n";
     fin.close();
     binf.close();
 
